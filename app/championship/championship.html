@@ -5,24 +5,19 @@
 </head>
 
 <body ng-app="myApp" ng-controller="ChampionshipCtrl">
+<input type="text" ng-model="nameFilter" placeholder="Search..."/>
 <table>
     <thead>
     <tr><th colspan="4">Drivers Championship Standings</th></tr>
     </thead>
     <tbody>
-    <tr ng-repeat="driver in driversList">
-        <td>{{$index + 1}}</td>
-        <td>
-            {{driver.Driver.nationality}}
-        </td>
-        <td>
-            {{driver.Driver.givenName}}
-        </td>
-        <td>
-            {{driver.Driver.familyName}}
-        </td>
-        <td>{{driver.Constructors[0].name}}</td>
-        <td>{{driver.points}}</td>
+    <tr ng-repeat="driver in driversList | filter:nameFilter">
+        <td align="center">{{$index + 1}}</td>
+        <td align="center">{{driver.Driver.nationality}}</td>
+        <td align="center">{{driver.Driver.givenName}}</td>
+        <td align="center">{{driver.Driver.familyName}}</td>
+        <td align="center">{{driver.Constructors[0].name}} </td>
+        <td align="center">{{driver.points}} </td>
     </tr>
     </tbody>
 </table>
