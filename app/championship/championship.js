@@ -5,13 +5,11 @@ angular.module('myApp.championship', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/championship', {
             templateUrl: 'championship/championship.html',
-            controller: 'ChampionshipCtrl',
-            factory: 'ergastAPIservice'
+            controller: 'ChampionshipCtrl'
         });
     }])
 
-    .factory('ergastAPIservice', '$http', function ($http) {
-        console.log($http);
+    .factory('ergastAPIservice', ['$http', function ($http) {
         var ergastAPI = {};
 
         ergastAPI.getDrivers = function () {
@@ -22,11 +20,10 @@ angular.module('myApp.championship', ['ngRoute'])
         };
 
         return ergastAPI;
-    })
+    }])
 
     .controller('ChampionshipCtrl', ['$scope', 'ergastAPIservice', function ($scope, ergastAPIservice) {
-        console.log(ergastAPIservice);
-        $scope.nameFilter = null;
+        $scope.nameFilter = 'Sebastian';
         $scope.driversList = [];
         $scope.searchFilter = function (driver) {
             var keyword = new RegExp($scope.nameFilter, 'i');
